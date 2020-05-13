@@ -1,0 +1,15 @@
+{% extends "analyzer/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="col-md-8">
+    <div class="content-section">
+        <form method="POST" action="{% url 'analyzer-result' %}">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <input type="text" name="keyword" class="form-control" placeholder="Enter Keyword" autocomplete="off"><br>
+                <input class="btn btn-outline-info" type="submit" value="Search"><br>
+            </fieldset>
+        </form>
+    </div>
+    </div>
+{% endblock content %}

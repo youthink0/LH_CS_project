@@ -1,0 +1,10 @@
+{% extends "analyzer/result-base.html" %}
+{% block choice %}
+  <div class="dropdown">
+    <button class="btn btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Negative</button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="{% url 'analyzer-positive' %}">Positive</a>
+      <a class="dropdown-item" href="{% url 'analyzer-result' %}">Neutral</a>
+    </div>
+  </div>
+{% endblock choice %}

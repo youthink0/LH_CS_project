@@ -10,12 +10,12 @@ def dataImport(csvpath, dbpath, tablename):
     conn.text_factory = str
     c = conn.cursor()
     c.execute("DROP TABLE " + tablename)
-    create_sql = "CREATE TABLE "+tablename + "(id INT PRIMARY KEY NOT NULL, title NCHAR, category NCHAR, segment NCHAR, host NCHAR, url NCHAR)"
+    create_sql = "CREATE TABLE "+tablename + "(id INT PRIMARY KEY NOT NULL, title NCHAR, category NCHAR, segment NCHAR, host NCHAR, url NCHAR, time INT)"
     c.execute(create_sql)
 
     for row in reader:
-        to_db = [row['id'], row['title'], row['category'], row['segment'], row['host'], row['url']]
-        c.execute("INSERT INTO "+tablename+ "(id, title, category, segment, host, url) VALUES (?, ?, ?, ?, ?, ?)", to_db)
+        to_db = [row['id'], row['title'], row['category'], row['segment'], row['host'], row['url'], time['INT']]
+        c.execute("INSERT INTO "+tablename+ "(id, title, category, segment, host, url, time) VALUES (?, ?, ?, ?, ?, ?, ?)", to_db)
     conn.commit()
 
     conn.close()

@@ -15,6 +15,17 @@ ul {
 .bg-steel {
   background-color: #5f788a;
 }
+.bg-image {
+  background-image: url(https://img.moegirl.org/common/thumb/a/ab/2019summer_5.png/1000px-2019summer_5.png);  /*自己的電腦圖片資料夾位置*/
+  position: absolute;  /*絕對位置*/
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-position: center;
+  background-size: cover;
+  z-index: -999; /*設定圖片層級*/
+}
 
 .site-header .navbar-nav .nav-link {
   color: #cbd5db;

@@ -13,8 +13,10 @@ def home(request):
 def result(request):
     if request.method == 'POST':
         keyword = request.POST.get('keyword')
+        sdates = request.POST.get('Sdate')
+        edates = request.POST.get('Edate')
         # 抓取資料
-        Classifier.crawl(keyword)
+        Classifier.crawl(keyword,sdates,edates)
         # 匯入資料
         Classifier.dataImport("./test.csv", "./db.sqlite3", "CrawlPage")
         os.remove(r"./test.csv")

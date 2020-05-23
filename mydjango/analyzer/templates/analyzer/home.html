@@ -1,15 +1,20 @@
 {% extends "analyzer/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class="col-md-8">
-    <div class="content-section">
+    <div class="bg-image"></div>
+    <div class="col-md-9">
+
         <form method="POST" action="{% url 'analyzer-result' %}">
             {% csrf_token %}
             <fieldset class="form-group">
-                <input type="text" name="keyword" class="form-control" placeholder="Enter Keyword" autocomplete="off"><br>
+                <strong><h2><font color="white" size="4">關鍵字</font></h2></strong>
+                <input type="text" name="keyword" class="form-control" placeholder="肺炎.奧運.etc..." autocomplete="off"><br>
+                <strong><h2><font color="white" size="4">搜尋特定日期範圍(若無請忽視)</font></h2></strong>
+                <input type="text" name="Sdate" class="form-control" placeholder="原初的日期，數字之間加入/：(in the form Y/M/D) or ignore" autocomplete="off"><br>
+                <input type="text" name="Edate" class="form-control" placeholder="終結的日期，數字之間加入/：(in the form Y/M/D) or ignore" autocomplete="off"><br>
                 <input class="btn btn-outline-info" type="submit" value="Search"><br>
             </fieldset>
         </form>
-    </div>
+
     </div>
 {% endblock content %}

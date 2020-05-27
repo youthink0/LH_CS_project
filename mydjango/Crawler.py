@@ -12,6 +12,7 @@ now = datetime.date.today() + datetime.timedelta(hours = 8)
 titletest = list()
 hosttest = list()
 urltest = list()
+timetest = list()
 to_append = list()
 dic = [
     "id", 
@@ -19,6 +20,7 @@ dic = [
     "category",
     "發布來源",
     "網址",
+    "發布時間",
     "segment",
 ]
  
@@ -50,7 +52,7 @@ for i in range(1):
             IgnoreDateFlag = 2
             print('wrong date form')
             break;
-    print(snums[0],snums[1],snums[2])
+        print(snums[0],snums[1],snums[2])
     
     EndNums = input('終結的日期，數字之間加入/：')
 
@@ -70,7 +72,7 @@ for i in range(1):
             IgnoreDateFlag = 2
             print('wrong date form')
             break;
-    print(enums[0],enums[1],enums[2])
+        print(enums[0],enums[1],enums[2])
     
     headers = {
     "User-Agent":
@@ -100,6 +102,7 @@ for i in range(1):
     title_list = soup.find_all('div',{'class':'gG0TJc'})
     host_list = soup.find_all('div',{'class':'gG0TJc'})
     url_list = soup.find_all('div',{'class':'gG0TJc'})
+    time_list = soup.find_all('div',{'class':'gG0TJc'})
     #print(soup)
     #print(title_list)
     #print(url_list)
@@ -125,6 +128,13 @@ for i in range(1):
         #print(a)
         
     #print('==============================')
+    for time in time_list:
+        #擷取新聞發布時間
+        a = time.find_all('span',{'class':'f nsa fwzPFf'})[0].text
+        timetest.append(a)
+        #print(a)
+        
+    #print('==============================')
     
     count = TestIdCount
     for i in range(len(titletest)):
@@ -132,7 +142,7 @@ for i in range(1):
         if(hosttest not in bad_host):
             count = count + 1
             if IgnoreDateFlag is not 2:
-                to_append = [int(count),titletest[i],"neutral",hosttest[i],urltest[i],""]
+                to_append = [int(count),titletest[i],"neutral",hosttest[i],urltest[i],timetest[i],""]
                 a_series = pd.Series(to_append, index = df1.columns)
                 df1 = df1.append(a_series, ignore_index=True)
 
@@ -140,6 +150,7 @@ for i in range(1):
                 print(titletest[i])
                 print(urltest[i])
                 print(hosttest[i])
+                print(timetest[i])
                 print(" ")
             
         to_append.clear()

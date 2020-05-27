@@ -6,6 +6,7 @@ class CrawlPage(models.Model):
     segment = models.CharField(max_length = 100)
     host = models.CharField(max_length = 100)
     url = models.CharField(max_length = 100)
+    time = models.CharField(max_length = 100)
 
     class Meta:
         db_table = "CrawlPage"

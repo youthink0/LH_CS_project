@@ -22,8 +22,9 @@ def crawl(keyword,sdates,edates):
     titletest = list()
     hosttest = list()
     urltest = list()
+    timetest = list()
     to_append = list()
-    dic = ["id", "title", "category", "host", "url", "segment",]
+    dic = ["id", "title", "category", "host", "url", "time", "segment",]
  
     
     bad_host = ['中工网','中国奥林匹克委员会','星洲网','China Press','手机网易网','新浪网','东方财富网','千龙网','搜狐'
@@ -52,7 +53,6 @@ def crawl(keyword,sdates,edates):
             IgnoreDateFlag = 2
             print('wrong date form')
     a = 1
-    #print(snums[0],snums[1],snums[2])
     
     EndNums = edates
     
@@ -71,7 +71,6 @@ def crawl(keyword,sdates,edates):
         if len(enums) != 3:
             IgnoreDateFlag = 2
             print('wrong date form')
-    #print(enums[0],enums[1],enums[2])
        
     headers = {
     "User-Agent":
@@ -95,9 +94,8 @@ def crawl(keyword,sdates,edates):
     title_list = soup.find_all('div',{'class':'gG0TJc'})
     host_list = soup.find_all('div',{'class':'gG0TJc'})
     url_list = soup.find_all('div',{'class':'gG0TJc'})
-    #print(soup)
-    #print(title_list)
-    #print(url_list)
+    time_list = soup.find_all('div',{'class':'gG0TJc'})
+    
     for ti in title_list:
         #擷取新聞標題
         a = ti.find_all('a')[0].text
@@ -117,13 +115,19 @@ def crawl(keyword,sdates,edates):
         urltest.append(a)
         #print(a)
     
+    for time in time_list:
+        #擷取新聞發布時間
+        a = time.find_all('span',{'class':'f nsa fwzPFf'})[0].text
+        timetest.append(a)
+        #print(a)
+    
     count = TestIdCount
     for i in range(len(titletest)):
         dateflag = 0
         if(hosttest not in bad_host):
             count = count + 1
             if IgnoreDateFlag is not 2:
-                to_append = [int(count),titletest[i],"neutral",hosttest[i],urltest[i],""]
+                to_append = [int(count),titletest[i],"neutral",hosttest[i],urltest[i],timetest[i],""]
                 a_series = pd.Series(to_append, index = df1.columns)
                 df1 = df1.append(a_series, ignore_index=True)
     
@@ -132,6 +136,7 @@ def crawl(keyword,sdates,edates):
                 print(titletest[i])
                 print(urltest[i])
                 print(hosttest[i])
+                print(timetest[i])
                 print(" ")
                 '''
         to_append.clear()
@@ -152,12 +157,12 @@ def dataImport(csvpath, dbpath, tablename):
     conn.text_factory = str
     c = conn.cursor()
     c.execute("DROP TABLE " + tablename)
-    create_sql = "CREATE TABLE "+tablename + "(id INT PRIMARY KEY NOT NULL, title NCHAR NOT NULL, category NCHAR, segment NCHAR, host NCHAR, url NCHAR)"
+    create_sql = "CREATE TABLE "+tablename + "(id INT PRIMARY KEY NOT NULL, title NCHAR NOT NULL, category NCHAR, segment NCHAR, host NCHAR, url NCHAR, time NCHAR)"
     c.execute(create_sql)
 
     for row in reader:
-        to_db = [row['id'], row['title'], row['category'], row['segment'], row['host'], row['url']]
-        c.execute("INSERT INTO "+tablename+ "(id, title, category, segment, host, url) VALUES (?, ?, ?, ?, ?, ?)", to_db)
+        to_db = [row['id'], row['title'], row['category'], row['segment'], row['host'], row['url'], row['time']]
+        c.execute("INSERT INTO "+tablename+ "(id, title, category, segment, host, url, time) VALUES (?, ?, ?, ?, ?, ?, ?)", to_db)
     conn.commit()
 
     conn.close()
@@ -264,8 +269,7 @@ def pred():
     conn.commit()
 
     conn.close()
-
-"""
+'''
 if __name__ == '__main__':
 
     #抓取資料
@@ -277,6 +281,5 @@ if __name__ == '__main__':
     get_segment()
     # 分類
     pred()
-"""
-
+'''
 

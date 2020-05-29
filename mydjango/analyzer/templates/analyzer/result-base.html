@@ -2,63 +2,65 @@
 {% block content %}
     {% if crawlPages %}
         <div class="col-md-8">
-          {% for crawlPage in crawlPages %}
-              <article class="media content-section">
-                <div class="media-body">
-                  <div class="article-metadata">
-                    <a class="mr-2">{{ crawlPage.host }}    {{ crawlPage.time }}</a>
-                  </div>
-                  <h2><a class="article-title" href={{ crawlPage.url }}>{{ crawlPage.title }}</a></h2>
-                </div>
-              </article>
-          {% endfor %}
+            {% for crawlPage in crawlPages %}
+                <article class="media content-section">
+                    <div class="media-body">
+                        <div class="article-metadata">
+                            <a class="mr-2">{{ crawlPage.host }}</a>
+                            <a class="mr-2 float-right">{{ crawlPage.time }}</a>
+                        </div>
+                        <h2><a class="article-title" href={{ crawlPage.url }}>{{ crawlPage.title }}</a></h2>
+                    </div>
+                </article>
+            {% endfor %}
         </div>
     {% else %}
         <div class="col-md-8">
-          <h2><a class="article-title">No result. Maybe uncorrect date.Try another keyword or date or category.</a></h2>
+            <h2><a class="article-title">No result. Maybe uncorrect date.Try another keyword or date or category.</a>
+            </h2>
         </div>
     {% endif %}
     <div class="col-md-4">
-      <div class="content-section">
-        <h3>Top three host</h3>
-        <p class='text-muted'>You can choose which category here you'd like to read.
-          {% block choice %}{% endblock choice %}
-          <div class="container">
-          <p class='text-center'>Total count : {{ total_count }}</p>
-          {% if first %}
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>host</th>
-                  <th>prop</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>{{ first }}</td>
-                  <td>{{ first_per }}%</td>
-                </tr>
-              {% if second %}
-                <tr>
-                  <td>2</td>
-                  <td>{{ second }}</td>
-                  <td>{{ second_per }}%</td>
-                </tr>
-              {% endif %}
-              {% if third %}
-                <tr>
-                  <td>3</td>
-                  <td>{{ third }}</td>
-                  <td>{{ third_per }}%</td>
-                </tr>
-              {% endif %}
-              </tbody>
-            </table>
-          {% endif %}
-          </div>
+        <div class="content-section">
+            <h3>Top three host</h3>
+            <p class='text-muted'>You can choose which category here you'd like to read.
+                {% block choice %}{% endblock choice %}
+                <div class="container">
+            <p class='text-center'>Total count : {{ total_count }}</p>
+            {% if first %}
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>host</th>
+                        <th>prop</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>{{ first }}</td>
+                        <td>{{ first_per }}%</td>
+                    </tr>
+                    {% if second %}
+                        <tr>
+                            <td>2</td>
+                            <td>{{ second }}</td>
+                            <td>{{ second_per }}%</td>
+                        </tr>
+                    {% endif %}
+                    {% if third %}
+                        <tr>
+                            <td>3</td>
+                            <td>{{ third }}</td>
+                            <td>{{ third_per }}%</td>
+                        </tr>
+                    {% endif %}
+                    </tbody>
+                </table>
+            {% endif %}
+        </div>
         </p>
-      </div>
+    </div>
     </div>
 {% endblock content %}

@@ -1,18 +1,22 @@
 {% extends "analyzer/base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
 {% block content %}
     <div class="bg-image"></div>
     <div class="col-md-9">
-
+        <!--<body style="background-image: url({% static 'analyzer/Home_BG.webp' %});background-size:cover;">-->
         <form method="POST" action="{% url 'analyzer-result' %}">
             {% csrf_token %}
             <fieldset class="form-group">
                 <strong><h2><font color="white" size="4">關鍵字</font></h2></strong>
-                <input type="text" name="keyword" class="form-control" placeholder="肺炎.奧運.etc..." autocomplete="off"><br>
-                <strong><h2><font color="white" size="4">搜尋特定日期範圍(若無請忽視)</font></h2></strong>
-                <input type="text" name="Sdate" class="form-control" placeholder="起始日期，數字之間加入/：(in the form of 2020/1/1 or ignore)" autocomplete="off"><br>
-                <input type="text" name="Edate" class="form-control" placeholder="結束日期，數字之間加入/：(in the form of 2020/1/1 or ignore)" autocomplete="off"><br>
-                <input class="btn btn-outline-info" type="submit" value="Search"><br>
+                <input type="text" name="keyword" class="form-control" placeholder="肺炎.奧運.etc..."
+                       autocomplete="off"><br>
+                <strong><h2><font color="white" size="4">搜尋特定日期範圍 (若無請忽視)</font></h2></strong>
+                <input type="text" name="Sdate" class="form-control"
+                       placeholder="起始日期 (in the form of 2020/1/1 or ignore)" autocomplete="off"><br>
+                <input type="text" name="Edate" class="form-control"
+                       placeholder="結束日期 (in the form of 2020/1/1 or ignore)" autocomplete="off"><br>
+                <input class="btn btn-light" type="submit" value="Search"><br>
             </fieldset>
         </form>
 

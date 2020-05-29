@@ -6,4 +6,4 @@
 ![image](https://github.com/youthink0/LH_CS_project/blob/use-in-readme/result_intro0.JPG?raw=true)  
   3.如想查詢其他屬性的該關鍵字的相關新聞，可使用如下圖的功能選取  
 ![image](https://github.com/youthink0/LH_CS_project/blob/use-in-readme/result_intro.JPG?raw=true)  
-  4.其他:點選上方的Home則直接跳回主頁面，about則是關於此網站的一些相關訊息  
+  4.其他 : 點選上方的Home則直接跳回主頁面，about則是關於此網站的一些相關訊息  

@@ -148,6 +148,7 @@ def crawl(keyword,sdates,edates):
     titletest.clear()
     hosttest.clear()
     urltest.clear()
+    timetest.clear()
     
     df1.to_csv('test.csv', index=False, encoding='UTF-8_sig')
 

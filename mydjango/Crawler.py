@@ -162,6 +162,7 @@ for i in range(1):
     titletest.clear()
     hosttest.clear()
     urltest.clear()
+    timetest.clear()
 '''
 if IgnoreDateFlag is not 2:
     df1.to_csv('train.csv',index=False,encoding='UTF-8_sig')
